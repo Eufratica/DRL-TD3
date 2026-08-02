@@ -64,22 +64,30 @@ $$G_t = \sum_{k=0}^{\infty} \gamma^k r_{t+k+1} = r_{t+1} + \gamma r_{t+2} + \gam
 
 ---
 
-### 2.3 Funções de Valor $V(s)$ e $Q(s, a)$
+## 3. As Funções de Valor $V(s)$ e $Q(s, a)$
 
-#### A. Função de Valor de Estado $V^\pi(s)$
+### A. Função de Valor de Estado $V^\pi(s)$
+
 Mede o retorno esperado estando no estado $s$ sob uma política $\pi$:
-$$V^\pi(s) = \mathbb{E}_\pi \left[ G_t \mid s_t = s \right]$$
 
-#### B. Função de Valor de Ação $Q^\pi(s, a)$
+$$
+V^\pi(s) = \mathbb{E}_\pi \left[ G_t \mid s_t = s \right]
+$$
+
+### B. Função de Valor de Ação $Q^\pi(s, a)$ (Função Q)
+
 Mede o retorno esperado ao executar a ação $a$ no estado $s$ e continuar seguindo a política $\pi$:
-$$Q^\pi(s, a) = \mathbb{E}_\pi \left[ G_t \mid s_t = s, a_t = a \right]$$
 
-#### Explicação dos Símbolos:
-* $Q^\pi(s, a)$: Valor escalar estimado para o par estado-ação sob a política $\pi$.
-* $\mathbb{E}_\pi [\cdot]$: Valor esperado estatístico (esperança matemática) sob a política $\pi$.
-* $s_t = s$: Condição do estado no tempo $t$ ser $s$.
-* $a_t = a$: Condição da ação no tempo $t$ ser $a$.
+$$
+Q^\pi(s, a) = \mathbb{E}_\pi \left[ G_t \mid s_t = s, a_t = a \right]
+$$
 
+### Explicação de cada símbolo
+
+- **$Q^\pi(s, a)$**: Valor numérico (escalar) estimado para o par estado-ação sob a política $\pi$.  
+- **$\mathbb{E}_\pi [\cdot]$**: Valor esperado estatístico (esperança matemática) seguindo as decisões da política $\pi$.  
+- **$s_t = s$**: Condição do estado no tempo $t$ ser $s$.  
+- **$a_t = a$**: Condição da ação no tempo $t$ ser $a$.
 ---
 
 ### 2.4. A Equação de Otimização de Bellman para Q*(s, a)
