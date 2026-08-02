@@ -183,7 +183,7 @@ loss = F.mse_loss(current_Q1, target_Q) + F.mse_loss(current_Q2, target_Q)
 
 ### Teoria e Equação
 
-Para regularizar a superfície de valor $Q$ e evitar picos de recompensa em ações isoladas, adiciona-se um ruído gaussiano cortado (*clipped noise*) à próxima ação $a'$ calculada pelo Ator Alvo:
+Para regularizar a superfície de valor $Q$ e evitar picos irrealistas de recompensa para ações muito isoladas, , adiciona-se um ruído gaussiano cortado (*clipped noise*) à próxima ação $a'$ calculada pelo Ator Alvo:
 
 $$a' = \text{clip}\left( \mu_{\phi_{\text{target}}}(s') + \tilde{\epsilon}, \, a_{\min}, \, a_{\max} \right)$$
 
