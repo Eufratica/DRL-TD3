@@ -86,16 +86,17 @@ $$Q^\pi(s, a) = \mathbb{E}_\pi \left[ G_t \mid s_t = s, a_t = a \right]$$
 
 A política ótima $\pi^*$ é aquela que atinge o maior valor $Q$ em todos os estados. A Equação de Otimização de Bellman decompõe recursivamente a função $Q^*$:
 
-$$Q^*(s, a) = r + \gamma \max_{a'} Q^*(s', a')$$
+$$
+Q^*(s, a) = r + \gamma \max_{a'} Q^*(s', a')
+$$
 
 #### Explicação dos Símbolos:
-* $Q^*(s, a)$: O valor $Q$ ótimo (máximo retorno teórico possível).
-* $r$: Recompensa imediata obtida ao transitar do estado $s$ para $s'$ via ação $a$.
-* $\gamma$: Fator de desconto temporal.
-* $\max_{a'}$: Operador que escolhe a ação $a'$ no próximo estado $s'$ que maximiza o valor $Q^*$.
-* $s'$: Próximo estado ($s_{t+1}$).
-* $a'$: Próxima ação ($a_{t+1}$).
-
+* **$Q^*(s, a)$**: O valor $Q$ ótimo (máximo retorno teórico possível).
+* **$r$**: Recompensa imediata obtida ao transitar do estado $s$ para $s'$ via ação $a$.
+* **$\gamma$**: Fator de desconto temporal.
+* **$\max_{a'}$**: Operador que escolhe a ação $a'$ no próximo estado $s'$ que maximiza o valor $Q^*$.
+* **$s'$**: Próximo estado ($s_{t+1}$).
+* **$a'$**: Próxima ação ($a_{t+1}$).
 ---
 
 ### 2.5 Gradiente de Política Determinística (DPG)
