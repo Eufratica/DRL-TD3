@@ -191,13 +191,16 @@ Onde a perturbação $\tilde{\epsilon}$ é definida por:
 
 $$\tilde{\epsilon} = \text{clip}\left( \epsilon, \, -c, \, c \right), \quad \epsilon \sim \mathcal{N}(0, \sigma^2)$$
 
-### Explicação dos Símbolos
+
+### Explicação de cada símbolo:
 
 * **$a'$**: Próxima ação suavizada enviada aos Críticos Alvo.
-* **$\text{clip}(x, a_{\min}, a_{\max})$**: Função que limita $x$ dentro do intervalo $[a_{\min}, a_{\max}]$.
-* **$\tilde{\epsilon}$**: Ruído gaussiano truncado.
-* **$\epsilon$**: Amostra de uma distribuição normal com média zero e desvio padrão $\sigma^2$ (policy_noise = 0.2).
-* **$-c, c$**: Limites de corte do ruído (noise_clip = 0.5).
+* **$\text{clip}(x, a_{\min}, a_{\max})$**: Função de truncamento que limita $x$ dentro do intervalo $[a_{\min}, a_{\max}]$.
+* **$\mu_{\phi_{\text{target}}}(s')$**: Ação determinística gerada pela rede do Ator Alvo.
+* **$\tilde{\epsilon}$** (epsilon com til): Ruído gaussiano truncado.
+* **$\epsilon$** (epsilon): Amostra de uma distribuição normal/gaussiana com média $0$ e variância $\sigma^2$ (policy_noise = 0.2).
+* **$-c, c$**: Limites máximo e mínimo do ruído (noise_clip = 0.5).
+* **$a_{\min}, a_{\max}$**: Limites do espaço de ação (-max_action = -1, max_action = 1).
 
 ---
 
