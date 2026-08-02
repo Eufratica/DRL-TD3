@@ -290,7 +290,7 @@ $$v = \frac{a_0 + 1}{2}, \quad \omega = a_1$$
 **Explicação dos Símbolos:**
 * **$a_0 \in [-1, 1]$**: Saída do primeiro neurônio do Ator.
 * **$a_1 \in [-1, 1]$**: Saída do segundo neurônio do Ator.
-* **$v \in [0, 1]$**: Velocidade linear em m/s (garante avanço sem ré).
+* **$v \in [0, 1]$**: Velocidade linear em m/s (garante avanço sem ré). Se $a_0 = -1 \Rightarrow v = 0$; se $a_0 = 1 \Rightarrow v = 1$. Impede que o robô ande de ré.
 * **$\omega \in [-1, 1]$**: Velocidade angular em rad/s.
 
 ---
