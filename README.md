@@ -300,7 +300,7 @@ next_state, reward, done, target = env.step(a_in)
 ```
 ---
 
-## 2. A Função de Recompensa Matemático-Programática
+### 4.2. A Função de Recompensa Matemático-Programática
 
 A recompensa instantânea $\mathcal{R}(s, a, s')$ é calculada por:
 
@@ -321,7 +321,7 @@ f(x) = \begin{cases}
 \end{cases}
 $$
 
-### Explicação de cada símbolo
+#### Explicação de cada símbolo
 
 - $d_{\text{goal}}$: Distância euclidiana atual do robô até o alvo.
 - $D_{\text{target}} = 0.3\text{ m}$: Raio de tolerância para considerar o objetivo alcançado.
@@ -358,6 +358,7 @@ $$a_{\text{exploração}} = \text{clip}\left( \mu_\phi(s) + \mathcal{N}(0, \sigm
 * **$\sigma_t$**: Desvio padrão do ruído de exploração no passo $t$.
 * **$\sigma_{\min} = 0.1$**: Ruído mínimo mantido ao fim do decaimento (expl_min).
 * **$N_{\text{decay}} = 500.000$**: Número total de passos para decaimento (expl_decay_steps).
+* $\mathcal{N}(0, \sigma_t^2)$: Amostra de uma distribuição normal com média zero e desvio padrão $\sigma_t$.
 
 No Código (train.py)
 ```Python
