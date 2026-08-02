@@ -1,3 +1,5 @@
+
+
 # 🤖 Navegação Autônoma de Robôs Móveis com TD3 (Twin Delayed DDPG) em ROS & Gazebo
 
 Este repositório contém a implementação completa em **PyTorch**, **ROS (Robot Operating System)** e **Gazebo** do algoritmo de Aprendizado por Reforço Profundo (**Deep Reinforcement Learning - DRL**) **TD3 (Twin Delayed Deep Deterministic Policy Gradient)** aplicado à navegação autônoma de robôs móveis utilizando sensores **LiDAR 3D (Velodyne)**.
@@ -5,6 +7,10 @@ Este repositório contém a implementação completa em **PyTorch**, **ROS (Robo
 
 
 
+
+
+
+https://github.com/user-attachments/assets/740839e1-9eda-4612-9f3f-aadce201dd22
 
 
 
