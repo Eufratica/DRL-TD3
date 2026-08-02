@@ -2,6 +2,14 @@
 
 Este repositório contém a implementação completa em **PyTorch**, **ROS (Robot Operating System)** e **Gazebo** do algoritmo de Aprendizado por Reforço Profundo (**Deep Reinforcement Learning - DRL**) **TD3 (Twin Delayed Deep Deterministic Policy Gradient)** aplicado à navegação autônoma de robôs móveis utilizando sensores **LiDAR 3D (Velodyne)**.
 
+
+
+https://github.com/user-attachments/assets/8e29104d-6b0f-48bd-806c-e977b8c81c11
+
+
+
+
+
 ---
 
 ## 📋 Sumário
