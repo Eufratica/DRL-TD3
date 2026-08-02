@@ -193,27 +193,7 @@ next_action = (next_action + noise).clamp(-self.max_action, self.max_action)
 
 
 
-## Pilar 2: Target Policy Smoothing (Suavização da Política Alvo)
 
-### Teoria e Equação
-
-Para regularizar a superfície de valor $Q$ e evitar picos de recompensa em ações isoladas, adiciona-se um ruído gaussiano cortado (*clipped noise*) à próxima ação $a'$ calculada pelo Ator Alvo:
-
-$$a' = \text{clip}\left( \mu_{\phi_{\text{target}}}(s') + \tilde{\epsilon}, \, a_{\min}, \, a_{\max} \right)$$
-
-Onde a perturbação $\tilde{\epsilon}$ é definida por:
-
-$$\tilde{\epsilon} = \text{clip}\left( \epsilon, \, -c, \, c \right), \quad \epsilon \sim \mathcal{N}(0, \sigma^2)$$
-
-### Explicação dos Símbolos
-
-* **$a'$**: Próxima ação suavizada enviada aos Críticos Alvo.
-* **$\text{clip}(x, a_{\min}, a_{\max})$**: Função que limita $x$ dentro do intervalo $[a_{\min}, a_{\max}]$.
-* **$\tilde{\epsilon}$**: Ruído gaussiano truncado.
-* **$\epsilon$**: Amostra de uma distribuição normal com média zero e desvio padrão $\sigma^2$ (policy_noise = 0.2).
-* **$-c, c$**: Limites de corte do ruído (noise_clip = 0.5).
-
----
 
 ## Pilar 3: Delayed Policy Updates e Soft Updates (Polyak Averaging)
 
@@ -241,37 +221,6 @@ $$\phi_{\text{target}} \leftarrow \tau \phi + (1 - \tau) \phi_{\text{target}}$$
 
 O Crítico é o estudo diário de exercícios. O Ator é a mudança de estratégia na prova. O aluno não altera sua estratégia a cada exercício resolvido; ele estuda 2 capítulos inteiros primeiro (Atraso $d=2$). Ao absorver conhecimento novo, incorpora 0.5% ($\tau = 0.005$) por dia na sua memória de longo prazo (redes Alvo).
 
-
-
-
-
-## Pilar 3: Delayed Policy Updates e Soft Updates (Polyak Averaging)
-
-### Teoria e Equações
-
-**Atraso na Atualização (Delayed Updates):** O Ator $\phi$ e as redes Alvo ($\phi_{	ext{target}}, 	heta_{	ext{target}}$) são atualizados apenas a cada $d$ iterações dos Críticos ($d = 2$).
-
-**Atualização Suave (Polyak Averaging):** As redes Alvo atualizam seus parâmetros via interpolação convexa com taxa $	au \ll 1$ ($	au = 0.005$):
-
-$$	heta_{	ext{target}, i} \leftarrow 	au 	heta_i + (1 - 	au) 	heta_{	ext{target}, i}, \quad 	ext{para } i \in \{1, 2\}$$
-
-$$\phi_{	ext{target}} \leftarrow 	au \phi + (1 - 	au) \phi_{	ext{target}}$$
-
-### Explicação dos Símbolos
-
-* **$	heta_{	ext{target}, i}$**: Pesos da rede neural do $i$-ésimo Crítico Alvo.
-* **$	heta_i$**: Pesos da rede neural do $i$-ésimo Crítico Principal.
-* **$\phi_{	ext{target}}$**: Pesos da rede neural do Ator Alvo.
-* **$\phi$**: Pesos da rede neural do Ator Principal.
-* **$	au$ (tau)**: Taxa de atualização suave ($0.005$).
-
----
-
-### Analogia do Mundo Real: Absorver Matéria aos Poucos Antes da Prova
-
-O Crítico é o estudo diário de exercícios. O Ator é a mudança de estratégia na prova. O aluno não altera sua estratégia a cada exercício resolvido; ele estuda $2$ capítulos inteiros primeiro (Atraso $d=2$). Ao absorver conhecimento novo, incorpora $0.5\%$ ($	au = 0.005$) por dia na sua memória de longo prazo (redes Alvo).
-delayed_policy_updates.md
-Exibindo delayed_policy_updates.md.
 
 No Código (train.py)
 
