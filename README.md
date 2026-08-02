@@ -300,23 +300,36 @@ next_state, reward, done, target = env.step(a_in)
 ```
 ---
 
-### 4.2 Função de Recompensa Matemático-Programática
+## 2. A Função de Recompensa Matemático-Programática
 
-A recompensa instantânea $\mathcal{R}(s, a, s')$ é dada por:
+A recompensa instantânea $\mathcal{R}(s, a, s')$ é calculada por:
 
-$$\mathcal{R}(s, a, s') = \begin{cases} +100.0, & \text{se } d_{\text{goal}} < D_{\text{target}} \quad (\text{chegou ao objetivo}) \\ -100.0, & \text{se } \min(\mathbf{z}_{\text{laser}}) < D_{\text{collision}} \quad (\text{colidiu}) \\ \frac{a_0}{2} - \frac{|a_1|}{2} - \frac{f(\min(\mathbf{z}_{\text{laser}}))}{2}, & \text{caso contrário} \end{cases}$$
+$$
+\mathcal{R}(s, a, s') = \begin{cases} 
++100.0, & \text{se } d_{\text{goal}} < D_{\text{target}} \quad (\text{chegou ao objetivo}) \\ 
+-100.0, & \text{se } \min(\mathbf{z}_{\text{laser}}) < D_{\text{collision}} \quad (\text{colidiu}) \\ 
+\frac{a_0}{2} - \frac{|a_1|}{2} - \frac{f(\min(\mathbf{z}_{\text{laser}}))}{2}, & \text{caso contrário} 
+\end{cases}
+$$
 
-Onde $f(x)$ penaliza a proximidade de obstáculos:
+Onde o termo de penalidade de proximidade de obstáculos $f(x)$ é:
 
-$$f(x) = \begin{cases} 1 - x, & \text{se } x < 1.0 \\ 0.0, & \text{se } x \ge 1.0 \end{cases}$$
+$$
+f(x) = \begin{cases} 
+1 - x, & \text{se } x < 1.0 \\ 
+0.0, & \text{se } x \ge 1.0 
+\end{cases}
+$$
 
-**Explicação dos Símbolos:**
-* **$d_{\text{goal}}$**: Distância euclidiana atual do robô até o alvo.
-* **$D_{\text{target}} = 0.3$m**: Tolerância para objetivo atingido.
-* **$\mathbf{z}_{\text{laser}} \in \mathbb{R}^{20}$**: Vetor de 20 leituras do LiDAR Velodyne.
-* **$D_{\text{collision}} = 0.35$m**: Limiar para detecção de colisão.
-* **$a_0$**: Recompensa proporcional à velocidade linear.
-* **$|a_1|$**: Penalidade proporcional ao módulo da rotação.
+### Explicação de cada símbolo
+
+- $d_{\text{goal}}$: Distância euclidiana atual do robô até o alvo.
+- $D_{\text{target}} = 0.3\text{ m}$: Raio de tolerância para considerar o objetivo alcançado.
+- $\mathbf{z}_{\text{laser}} \in \mathbb{R}^{20}$: Vetor com as 20 leituras de distância do sensor LiDAR Velodyne.
+- $D_{\text{collision}} = 0.35\text{ m}$: Distância mínima para detecção de colisão.
+- $a_0$: Ação bruta de velocidade linear. Termo $\frac{a_0}{2}$ bonifica avançar rápido.
+- $|a_1|$: Módulo da ação de rotação. Termo $-\frac{|a_1|}{2}$ penaliza girar sem sair do lugar.
+- $f(\min(\mathbf{z}_{\text{laser}}))$: Função de penalidade que gera custo negativo se o robô passar a menos de $1.0\text{ m}$ de qualquer obstáculo.
 
 No Código (velodyne_env.py)
 ```Python
