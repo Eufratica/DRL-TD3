@@ -86,15 +86,11 @@ $$Q^\pi(s, a) = \mathbb{E}_\pi \left[ G_t \mid s_t = s, a_t = a \right]$$
 
 A política ótima π* é aquela que atinge o maior valor Q em todos os estados. A Equação de Otimização de Bellman decompõe recursivamente a função Q*:
 
-$$
-Q^*(s, a) = \mathcal{R}(s, a) + \gamma \int_{\mathcal{S}} \mathcal{P}(s' \mid s, a) \max_{a'} Q^*(s', a') \, ds'
-$$
+<img src="https://latex.codecogs.com/png.latex?Q%5E%7B*%7D(s%2C%20a)%20%3D%20%5Cmathcal%7BR%7D(s%2C%20a)%20%2B%20%5Cgamma%20%5Cint_%7B%5Cmathcal%7BS%7D%7D%20%5Cmathcal%7BP%7D(s%27%20%5Cmid%20s%2C%20a)%20%5Cmax_%7Ba%27%7D%20Q%5E%7B*%7D(s%27%2C%20a%27)%20%5C%2C%20ds%27" alt="Equação de Bellman 1">
 
 Em ambientes discretos ou amostrados do Replay Buffer, escreve-se:
 
-$$
-Q^*(s, a) = r + \gamma \max_{a'} Q^*(s', a')
-$$
+<img src="https://latex.codecogs.com/png.latex?Q%5E%7B*%7D(s%2C%20a)%20%3D%20r%20%2B%20%5Cgamma%20%5Cmax_%7Ba%27%7D%20Q%5E%7B*%7D(s%27%2C%20a%27)" alt="Equação de Bellman 2">
 
 ### Explicação de cada símbolo
 
