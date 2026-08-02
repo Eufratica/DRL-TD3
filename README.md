@@ -64,9 +64,9 @@ $$G_t = \sum_{k=0}^{\infty} \gamma^k r_{t+k+1} = r_{t+1} + \gamma r_{t+2} + \gam
 
 ---
 
-## 3. As Funções de Valor $V(s)$ e $Q(s, a)$
+### 2.3. As Funções de Valor $V(s)$ e $Q(s, a)$
 
-### A. Função de Valor de Estado $V^\pi(s)$
+#### A. Função de Valor de Estado $V^\pi(s)$
 
 Mede o retorno esperado estando no estado $s$ sob uma política $\pi$:
 
@@ -74,7 +74,7 @@ $$
 V^\pi(s) = \mathbb{E}_\pi \left[ G_t \mid s_t = s \right]
 $$
 
-### B. Função de Valor de Ação $Q^\pi(s, a)$ (Função Q)
+#### B. Função de Valor de Ação $Q^\pi(s, a)$ (Função Q)
 
 Mede o retorno esperado ao executar a ação $a$ no estado $s$ e continuar seguindo a política $\pi$:
 
@@ -82,7 +82,7 @@ $$
 Q^\pi(s, a) = \mathbb{E}_\pi \left[ G_t \mid s_t = s, a_t = a \right]
 $$
 
-### Explicação de cada símbolo
+#### Explicação de cada símbolo
 
 - **$Q^\pi(s, a)$**: Valor numérico (escalar) estimado para o par estado-ação sob a política $\pi$.  
 - **$\mathbb{E}_\pi [\cdot]$**: Valor esperado estatístico (esperança matemática) seguindo as decisões da política $\pi$.  
@@ -135,7 +135,15 @@ $$\nabla_\phi J(\phi) = \mathbb{E}_{s \sim \mathcal{D}} \left[ \left. \nabla_a Q
 ### Pilar 1: Clipped Double Q-Learning (Combate à Superestimação)
 
 #### Teoria e Equação
-Devido ao uso de redes neurais, ocorre a superestimação sistemática do valor Q. O TD3 mantém dois Críticos ($Q_{\theta_1}$ e $Q_{\theta_2}$) e duas redes Alvo ($Q_{\theta_{\text{target}, 1}}$ e $Q_{\theta_{\text{target}, 2}}$), definindo o Alvo Temporal $y$ através do **mínimo** entre eles:
+
+
+Devido ao uso de aproximação por redes neurais, ocorre a desigualdade de Jensen / erro de maximização:
+
+$$
+\mathbb{E}[\max(Q_1, Q_2)] \ge \max(\mathbb{E}[Q_1], \mathbb{E}[Q_2])
+$$
+
+O TD3 mantém dois Críticos ($Q_{\theta_1}$ e $Q_{\theta_2}$) e duas redes Alvo ($Q_{\theta_{\text{target}, 1}}$ e $Q_{\theta_{\text{target}, 2}}$), definindo o Alvo Temporal $y$ como o mínimo entre eles:
 
 $$y = r + \gamma (1 - d) \min_{i \in \{1, 2\}} Q_{\theta_{\text{target}, i}}(s', a')$$
 
