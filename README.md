@@ -167,7 +167,7 @@ $$L(\theta_1, \theta_2) = \frac{1}{\vert{}B\vert{}} \sum_{(s, a, r, d, s') \in B
 Se você quer saber a capacidade de carga de uma ponte e consulta dois engenheiros:
 * O **Engenheiro 1** (Crítico 1) diz que a ponte aguenta 100 toneladas.
 * O **Engenheiro 2** (Crítico 2) é mais conservador e diz que aguenta 70 toneladas.
-* O TD3 adota a estimativa mínima de **70 toneladas** ($$y = \min(Q_1, Q_2)), evitando que a estrutura colapse por excesso de otimismo. 
+* O TD3 adota a estimativa mínima de **70 toneladas** ($$y = \min(Q_1, Q_2)$$), evitando que a estrutura colapse por excesso de otimismo. 
 
 #### No Código (train.py & Critic)
 ```python
