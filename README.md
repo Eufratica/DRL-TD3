@@ -148,3 +148,30 @@ target_Q = reward + ((1 - done) * discount * target_Q).detach()
 
 current_Q1, current_Q2 = self.critic(state, action)
 loss = F.mse_loss(current_Q1, target_Q) + F.mse_loss(current_Q2, target_Q)
+
+```
+## Pilar 2: Target Policy Smoothing (Suavização da Política Alvo)
+
+### Teoria e Equação
+
+Para regularizar a superfície de valor $Q$ e evitar picos de recompensa em ações isoladas, adiciona-se um ruído gaussiano cortado (*clipped noise*) à próxima ação $a'$ calculada pelo Ator Alvo:
+
+$$a' = \text{clip}\left( \mu_{\phi_{\text{target}}}(s') + \tilde{\epsilon}, \, a_{\min}, \, a_{\max} \right)$$
+
+Onde a perturbação $\tilde{\epsilon}$ é definida por:
+
+$$\tilde{\epsilon} = \text{clip}\left( \epsilon, \, -c, \, c \right), \quad \epsilon \sim \mathcal{N}(0, \sigma^2)$$
+
+### Explicação dos Símbolos
+
+* **$a'$**: Próxima ação suavizada enviada aos Críticos Alvo.
+* **$\text{clip}(x, a_{\min}, a_{\max})$**: Função que limita $x$ dentro do intervalo $[a_{\min}, a_{\max}]$.
+* **$\tilde{\epsilon}$**: Ruído gaussiano truncado.
+* **$\epsilon$**: Amostra de uma distribuição normal com média zero e desvio padrão $\sigma^2$ (policy_noise = 0.2).
+* **$-c, c$**: Limites de corte do ruído (noise_clip = 0.5).
+
+---
+
+### Analogia do Mundo Real: Testar o Veículo em Piso com Trepidação
+
+Ajustar a direção do carro apenas em um asfalto plano torna-o vulnerável a qualquer pequena imperfeição na pista real. Adicionar vibração durante o teste ($\tilde{\epsilon}$) força o sistema a ser estável não apenas na trajetória ideal, mas em toda a vizinhança do movimento.
