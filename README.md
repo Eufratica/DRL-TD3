@@ -245,7 +245,8 @@ $$\phi_{\text{target}} \leftarrow \tau \phi + (1 - \tau) \phi_{\text{target}}$$
 * **$\theta_i$**: Pesos da rede neural do $i$-ésimo Crítico Principal.
 * **$\phi_{\text{target}}$**: Pesos da rede neural do Ator Alvo.
 * **$\phi$**: Pesos da rede neural do Ator Principal.
-* **$\tau$ (tau)**: Taxa de atualização suave ($0.005$).
+* **$\tau$ (tau)**: Taxa de atualização suave ($0.005$).Define a fração dos pesos novos que será absorvida pelas redes Alvo.
+* **$(1 - \tau)$**: Fração do conhecimento antigo mantida na rede Alvo ($0.995$).
 
 ---
 
