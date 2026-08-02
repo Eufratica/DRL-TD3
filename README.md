@@ -283,7 +283,7 @@ if it % policy_freq == 0:
 
 ### 4.1 Mapeamento de Ações
 
-As saídas da rede Ator $a_0, a_1 \in [-1, 1]$ geradas pela função $	anh$ são mapeadas para os comandos reais de velocidade linear ($v \in [0, 1]$ m/s) e angular ($\omega \in [-1, 1]$ rad/s):
+As saídas da rede Ator $a_0, a_1 \in [-1, 1]$ geradas pela função $tanh$ são mapeadas para os comandos reais de velocidade linear ($v \in [0, 1]$ m/s) e angular ($\omega \in [-1, 1]$ rad/s):
 
 $$v = \frac{a_0 + 1}{2}, \quad \omega = a_1$$
 
