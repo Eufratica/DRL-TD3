@@ -82,17 +82,21 @@ $$Q^\pi(s, a) = \mathbb{E}_\pi \left[ G_t \mid s_t = s, a_t = a \right]$$
 
 ---
 
-## 4. A Equação de Otimização de Bellman para Q*(s, a)
+### 2.4. A Equação de Otimização de Bellman para Q*(s, a)
 
 A política ótima π* é aquela que atinge o maior valor Q em todos os estados. A Equação de Otimização de Bellman decompõe recursivamente a função Q*:
 
-<img src="https://latex.codecogs.com/svg.latex?%5Cbg%7Btransparent%7D%5Ccolor%7Bwhite%7DQ%5E*%28s%2Ca%29%3D%5Cmathcal%7BR%7D%28s%2Ca%29%2B%5Cgamma%5Cint_%7B%5Cmathcal%7BS%7D%7D%5Cmathcal%7BP%7D%28s%27%5Cmid%20s%2Ca%29%5Cmax_%7Ba%27%7DQ%5E*%28s%27%2Ca%27%29%5C%2Cds%27" alt="Equação de Bellman 1">
+<div align="center">
+  <img src="https://latex.codecogs.com/svg.latex?%5Cbg%7Btransparent%7D%5Ccolor%7Bwhite%7D%5Clarge%20Q%5E*%28s%2Ca%29%3D%5Cmathcal%7BR%7D%28s%2Ca%29%2B%5Cgamma%5Cint_%7B%5Cmathcal%7BS%7D%7D%5Cmathcal%7BP%7D%28s%27%5Cmid%20s%2Ca%29%5Cmax_%7Ba%27%7DQ%5E*%28s%27%2Ca%27%29%5C%2Cds%27" alt="Equação de Bellman 1">
+</div>
 
 Em ambientes discretos ou amostrados do Replay Buffer, escreve-se:
 
-<img src="https://latex.codecogs.com/svg.latex?%5Cbg%7Btransparent%7D%5Ccolor%7Bwhite%7DQ%5E*%28s%2Ca%29%3Dr%2B%5Cgamma%5Cmax_%7Ba%27%7DQ%5E*%28s%27%2Ca%27%29" alt="Equação de Bellman 2">
+<div align="center">
+  <img src="https://latex.codecogs.com/svg.latex?%5Cbg%7Btransparent%7D%5Ccolor%7Bwhite%7D%5Clarge%20Q%5E*%28s%2Ca%29%3Dr%2B%5Cgamma%5Cmax_%7Ba%27%7DQ%5E*%28s%27%2Ca%27%29" alt="Equação de Bellman 2">
+</div>
 
-### Explicação de cada símbolo
+#### Explicação de cada símbolo
 
 - **Q*(s, a)**: O valor Q ótimo (máximo retorno teórico possível).  
 - **r**: Recompensa imediata obtida ao transitar do estado s para s' via ação a.  
