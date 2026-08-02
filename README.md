@@ -206,7 +206,7 @@ $$\tilde{\epsilon} = \text{clip}\left( \epsilon, \, -c, \, c \right), \quad \eps
 
 ### Analogia do Mundo Real: Testar o Veículo em Piso com Trepidação
 
-Ajustar a direção do carro apenas em um asfalto plano torna-o vulnerável a qualquer pequena imperfeição na pista real. Adicionar vibração durante o teste ($\tilde{\epsilon}$) força o sistema a ser estável não apenas na trajetória ideal, mas em toda a vizinhança do movimento.
+Se você ajusta a direção do carro apenas em um asfalto plano e seco, qualquer pequena pedra na pista pode desestabilizar o veículo. Ao adicionar vibração e pequenas perturbações no piso durante o teste ($\tilde{\epsilon}$), você obriga o sistema a ser estável não apenas no ponto perfeito, mas em toda a vizinhança daquela trajetória.
 
 
 No Código (train.py)
