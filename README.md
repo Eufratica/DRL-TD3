@@ -293,6 +293,11 @@ $$v = \frac{a_0 + 1}{2}, \quad \omega = a_1$$
 * **$v \in [0, 1]$**: Velocidade linear em m/s (garante avanço sem ré). Se $a_0 = -1 \Rightarrow v = 0$; se $a_0 = 1 \Rightarrow v = 1$. Impede que o robô ande de ré.
 * **$\omega \in [-1, 1]$**: Velocidade angular em rad/s.
 
+No Código (velodyne_env.py, train.py, test.py)
+```Python
+a_in = [(action[0] + 1) / 2, action[1]]
+next_state, reward, done, target = env.step(a_in)
+```
 ---
 
 ### 4.2 Função de Recompensa Matemático-Programática
@@ -313,6 +318,19 @@ $$f(x) = \begin{cases} 1 - x, & \text{se } x < 1.0 \\ 0.0, & \text{se } x \ge 1.
 * **$a_0$**: Recompensa proporcional à velocidade linear.
 * **$|a_1|$**: Penalidade proporcional ao módulo da rotação.
 
+No Código (velodyne_env.py)
+```Python
+@staticmethod
+def get_reward(target, collision, action, min_laser):
+    if target:
+        return 100.0
+    elif collision:
+        return -100.0
+    else:
+        r3 = lambda x: 1 - x if x < 1 else 0.0
+        return action[0] / 2 - abs(action[1]) / 2 - r3(min_laser) / 2
+```
+
 ---
 
 ### 4.3 Decaimento do Ruído de Exploração
@@ -327,6 +345,15 @@ $$a_{\text{exploração}} = \text{clip}\left( \mu_\phi(s) + \mathcal{N}(0, \sigm
 * **$\sigma_t$**: Desvio padrão do ruído de exploração no passo $t$.
 * **$\sigma_{\min} = 0.1$**: Ruído mínimo mantido ao fim do decaimento (expl_min).
 * **$N_{\text{decay}} = 500.000$**: Número total de passos para decaimento (expl_decay_steps).
+
+No Código (train.py)
+```Python
+if expl_noise > expl_min:
+    expl_noise = expl_noise - ((1 - expl_min) / expl_decay_steps)
+
+action = network.get_action(np.array(state))
+action = (action + np.random.normal(0, expl_noise, size=action_dim)).clip(-max_action, max
+```
 
 ---
 
