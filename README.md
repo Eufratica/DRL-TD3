@@ -151,12 +151,17 @@ A função de perda do erro quadrático médio (MSE) para atualizar os dois Crí
 
 $$L(\theta_1, \theta_2) = \frac{1}{\vert{}B\vert{}} \sum_{(s, a, r, d, s') \in B} \left[ \left( Q_{\theta_1}(s, a) - y \right)^2 + \left( Q_{\theta_2}(s, a) - y \right)^2 \right]$$
 
-#### Explicação dos Símbolos:
-* $y$: Alvo de Diferença Temporal (TD Target).
-* $d \in \{0, 1\}$: Indicador de término do episódio (`done`). Se $d=1$, $(1-d)=0$ e cancela os retornos futuros.
-* $\min_{i \in \{1,2\}}$: Função de seleção do menor valor escalar entre os dois Críticos Alvo.
-* $Q_{\theta_{\text{target}, i}}(s', a')$: Previsão do valor $Q$ do $i$-ésimo Crítico Alvo.
-* $\vert{}B\vert{}$: Tamanho do mini-batch extraído do Replay Buffer (ex: $40$).
+### Explicação de cada símbolo
+
+* **$y$**: Alvo de Diferença Temporal (TD Target).
+* **$r$**: Recompensa escalar.
+* **$\gamma$**: Fator de desconto ($0.99999$).
+* **$d \in \{0, 1\}$**: Indicador booleano de término do episódio (done). Se $d=1$ (colisão/meta), $(1-d)=0$ e o valor futuro é zerado.
+* **$\min_{i \in \{1,2\}}$**: Função que seleciona o menor valor escalar retornado entre os dois Críticos Alvo.
+* **$Q_{\theta_{\text{target}, i}}(s', a')$**: Previsão do valor $Q$ do $i$-ésimo Crítico Alvo para o próximo estado $s'$ e próxima ação $a'$.
+* **$L(\theta_1, \theta_2)$**: Perda total da Média dos Erros Quadráticos (MSE Loss).
+* **$\vert{}B\vert{}$**: Tamanho do mini-batch extraído do Replay Buffer (ex: $40$).
+* **$Q_{\theta_1}(s, a)$** e **$Q_{\theta_2}(s, a)$**: Estimativas atuais dos dois Críticos Principais.
 
 #### Analogia do Mundo Real: O Conselho de Dois Engenheiros Conservadores
 Se você quer saber a capacidade de carga de uma ponte e consulta dois engenheiros:
