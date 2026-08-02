@@ -250,9 +250,14 @@ $$\phi_{\text{target}} \leftarrow \tau \phi + (1 - \tau) \phi_{\text{target}}$$
 
 ---
 
-### Analogia do Mundo Real: Absorver Matéria aos Poucos Antes da Prova
 
-O Crítico é o estudo diário de exercícios. O Ator é a mudança de estratégia na prova. O aluno não altera sua estratégia a cada exercício resolvido; ele estuda 2 capítulos inteiros primeiro (Atraso $d=2$). Ao absorver conhecimento novo, incorpora 0.5% ($\tau = 0.005$) por dia na sua memória de longo prazo (redes Alvo).
+### Analogia: Absorver Matéria aos Poucos Antes da Prova
+
+O Crítico é a fase diária de resolução de exercícios. O Ator é a estratégia de prova.
+
+* Você não muda sua estratégia de prova a cada exercício que erra. Você estuda $2$ capítulos inteiros primeiro (Atraso $d=2$).
+
+* Ao aprender algo novo, você absorve $0.5\%$ ($\tau = 0.005$) de conhecimento por dia na sua memória de longo prazo (redes Alvo), garantindo que não vai esquecer a base sólida construída antes.
 
 
 No Código (train.py)
